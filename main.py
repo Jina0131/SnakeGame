@@ -32,6 +32,11 @@ def rand_pos():
     rand_y = rd.randint(-250,250)
     return rand_x, rand_y
 
+def score_update():
+    global score
+    score +=1
+    score_pen.clear()
+    score_pen.write(f"점수 : {score}", font=("", 15, "bold"))
 
 
 
@@ -76,5 +81,6 @@ while game_on:
     snakes[0].forward(10)
 
     if snakes[0].distance(food) < 15:
+        score_update()
         food.goto(rand_pos())
         creat_snake(snakes[-1].pos())
