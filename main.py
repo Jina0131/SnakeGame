@@ -38,6 +38,9 @@ def score_update():
     score_pen.clear()
     score_pen.write(f"점수 : {score}", font=("", 15, "bold"))
 
+def game_over():
+    score_pen.goto(0, 0)
+    score_pen.write("Game Over", False, "center", ("", 30, "bold"))
 
 
 screen = Screen()
@@ -78,9 +81,18 @@ while game_on:
     time.sleep(0.1)
     for i in range(len(snakes)-1, 0, -1):
         snakes[i].goto(snakes[i-1].pos())
-    snakes[0].forward(10)
+    snakes[0].forward(15)
 
     if snakes[0].distance(food) < 15:
         score_update()
         food.goto(rand_pos())
         creat_snake(snakes[-1].pos())
+    
+    if snakes[0].xcor() > 280 or snakes[0].xcor() < -280 \
+        or snakes[0].ycor() > 280 or snakes[0].ycor() < -280:
+        game_on = False
+        game_over()
+
+    for body in snakes[1:]:
+        if snakes[0].distance(body) <10:
+            game_over()
