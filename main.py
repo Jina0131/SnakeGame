@@ -95,4 +95,5 @@ while game_on:
 
     for body in snakes[1:]:
         if snakes[0].distance(body) <10:
+            game_on = False
             game_over()
