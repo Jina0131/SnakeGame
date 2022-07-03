@@ -43,6 +43,7 @@ screen.tracer(0)
 
 start_pos = [(0,0), (-20, 0), (-40, 0)]
 snakes = []
+score = 0
 for pos in start_pos:
     creat_snake(pos)
 
@@ -54,6 +55,11 @@ food.up()
 food.speed(0)
 food.goto(rand_pos())
 
+score_pen = Turtle()
+score_pen.ht()
+score_pen.up()
+score_pen.goto(-270, 250)
+score_pen.write(f"점수: {score}", font=("", 15, "bold"))
 
 screen.listen()
 screen.onkeypress(up, "Up")
